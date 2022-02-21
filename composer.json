@@ -1,0 +1,15 @@
+{
+    "name": "felip/crud-mvc",
+    "autoload": {
+        "psr-4": {
+            "crud\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Felipe Figueiredo",
+            "email": "felipefigueiredosal@gmail.com"
+        }
+    ],
+    "require": {}
+}

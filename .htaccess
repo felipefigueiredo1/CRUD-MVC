@@ -1,0 +1,13 @@
+RewriteEngine on
+
+Options +FollowSymLinks
+
+RewriteCond %{REQUEST_FILENAME} !-f
+
+RewriteCond %{REQUEST_FILENAME} !-d
+
+Options All -Indexes
+
+DirectoryIndex index.php
+
+RewriteRule ^(.*)$ index.php?pagina=$1

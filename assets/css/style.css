@@ -1,0 +1,20 @@
+header{
+    
+}
+h1{
+    text-align: center;
+}
+#cadastro{
+    margin-bottom: 30px;
+}
+
+.sign{
+    margin-bottom: 40px;
+    padding: 15px;
+}
+#insert{
+    margin-top: 5px;
+}
+.form-group{
+    margin-left: 40px;
+}
