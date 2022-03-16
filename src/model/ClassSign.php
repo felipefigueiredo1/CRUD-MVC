@@ -103,6 +103,11 @@ class ClassSign
         $dados->bindValue(":email", $this->email);
         $dados->bindValue(":id",    $this->id);
         $dados->execute();
+        if($dados) {
+            echo '<script>alert("Editado com sucesso!")</script>';
+        } else {
+            echo '<script>alert("ERRO não é possivel editar!")</script>';
+        }
     }
 
     //Deleção de usuário
@@ -113,5 +118,10 @@ class ClassSign
         $dados = $conn->prepare($query);
         $dados->bindValue(":id", $this->id);
         $dados->execute();
+        if($dados) {
+            echo '<script>alert("Deletado com sucesso!")</script>';
+        } else {
+            echo '<script>alert("ERRO não é possivel deletar!")</script>';
+        }
     }
 }
