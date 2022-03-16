@@ -3,37 +3,37 @@
 namespace crud\controller;
 
 use crud\model\ClassSign;
-use PDO;
 
 class ControllerLogin
 {
-    public function processaRequisicao()
+    public function processRequest()
     {   
-        
+
         //Inserção de usuário
         if (isset($_POST['insert']) && !empty($_POST['insert'])) {
             $sign = new ClassSign();
-            $sign->inserindo();
-        };
+            $sign->inserting();
+        }
 
         //Atualização de registros de usuário
         if (isset($_POST['update']) && !empty($_POST['update'])) {
             $sign = new ClassSign();
-            $sign->atualizando();
-        };
+            $sign->updating();
+        }
 
         //Deleção de usuário
         if (isset($_POST['delete']) && !empty($_POST['delete'])) {
             $sign = new ClassSign();
-            $sign->deletando();
+            $sign->deleting();
         }
 
         //Listando usuários registrados
-        $listagem = ClassSign::listando();
+        $listagem = ClassSign::listing();
 
 
-        require __DIR__ . '/../../view/superior.php';
+        require __DIR__ . '/../../view/header.php';
         require __DIR__ . '/../../view/index.php';
-        require __DIR__ . '/../../view/inferior.php';
+        require __DIR__ . '/../../view/ajax.php';
+        require __DIR__ . '/../../view/footer.php';
     }
 }

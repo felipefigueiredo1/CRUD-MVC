@@ -3,30 +3,31 @@
 //Incluindo arquivos para iniciar rota
 include('vendor/autoload.php');
 
-use crud\controller\ControllerRotas;
+use crud\controller\ControllerRoutes;
 
 //Verificando se foi inserido algo na URL
-$url = (isset($_GET['pagina'])) ? $_GET['pagina'] : null;
-$paginaUrl = explode('/', $url);
+$url = (isset($_GET['page'])) ? $_GET['page'] : null;
+$pageUrl = explode('/', $url);
 
-for($i = 0; $i < count($paginaUrl); $i++){
-    if (empty($paginaUrl[$i]) && $i == 0){
-        $pagina = "/";
+for($i = 0; $i < count($pageUrl); $i++){
+    if (empty($pageUrl[$i]) && $i == 0){
+        $page = "/";
     }
-    if (!empty($paginaUrl[$i]) && $i == 0){
-        $pagina = $paginaUrl[$i];
+    if (!empty($pageUrl[$i]) && $i == 0){
+        $page = $pageUrl[$i];
     }
 }
 
-$rotas = ControllerRotas::rotas();
+//Chama classe com função estática que contem as rotas
+$routes = ControllerRoutes::routes();
 
 //Verificando se oque foi digitado na URL é uma rota existente no ControllerRotas
-if(!array_key_exists($pagina, $rotas)){
+if(!array_key_exists($page, $routes)){
     header('Location: error-404');
     exit(); 
 }
 
-//Por fim, pegando a rota e processando
-$rota = $rotas[$pagina];
-$controllador = new $rota;
-$controllador->processaRequisicao();
+//Pega a rota retornada para a variavel page
+$route = $routes[$page];
+$controller = new $route;
+$controller->processRequest();

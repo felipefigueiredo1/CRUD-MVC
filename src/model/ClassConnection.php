@@ -6,9 +6,10 @@ use PDO;
 use Exception;
 include 'include/config.php';
 
-class ClassConexao
+class ClassConnection
 {
-    public static function pegaConexao()
+    //Inicia conexao com banco de dados via PDO
+    public static function getConnection()
     {
         try {
             return new PDO(DB_DRIVER . ':host=' . DB_HOST

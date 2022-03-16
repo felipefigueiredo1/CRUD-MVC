@@ -5,8 +5,8 @@
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-                            <label for="nome">Nome</label>
-                            <input type="text" name="nome" class="form-control campo" required  placeholder="Nome">
+                            <label for="name">Nome</label>
+                            <input type="text" name="name" class="form-control campo" required  placeholder="Nome">
                         </div>
                     </div>
                     <div class="col">
@@ -17,8 +17,8 @@
                     </div>
                     <div class="col">
                         <div class="form-group">
-                            <label for="senha">Senha</label>
-                            <input type="password" name="senha" class="form-control campo" required  placeholder="Senha">
+                            <label for="password">Senha</label>
+                            <input type="password" name="password" class="form-control campo" required  placeholder="Senha">
                         </div>
                     </div>                                        
                         <div class="form-group">
@@ -50,9 +50,9 @@
                         <form action="login" method="post">
 
                             <td scope="row"><?php echo $valor['id']; ?></td>
-                            <td><input type ="text" name="nome"  value="<?php echo $valor['nome'];  ?>"></td>
+                            <td><input type ="text" name="name"  value="<?php echo $valor['name'];  ?>"></td>
                             <td><input type ="email" name="email" value="<?php echo $valor['email']; ?>"></td>
-                            <td><input type ="password" name="senha" value="<?php echo $valor['senha']; ?>"></td>
+                            <td><input type ="password" name="password" value="<?php echo $valor['password']; ?>"></td>
                             <td>
                             <input type="hidden" name="id" value="<?php echo $valor['id']; ?>">
                             <input type="submit" class="btn btn-success" name="update" value="Editar">
