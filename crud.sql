@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 21-Fev-2022 às 04:15
+-- Tempo de geração: 16-Mar-2022 às 18:03
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 7.4.27
 
@@ -24,35 +24,32 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `usuario`
+-- Estrutura da tabela `user`
 --
 
-CREATE TABLE `usuario` (
+CREATE TABLE `user` (
   `id` int(11) NOT NULL,
-  `nome` varchar(50) NOT NULL,
+  `name` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `senha` varchar(50) NOT NULL
+  `password` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `usuario`
+-- Extraindo dados da tabela `user`
 --
 
-INSERT INTO `usuario` (`id`, `nome`, `email`, `senha`) VALUES
-(1, 'Alessandro', 'felipefigueiredosal@gmail.com', '123'),
+INSERT INTO `user` (`id`, `name`, `email`, `password`) VALUES
 (9, 'James', 'galus@gmail.com', '123'),
-(12, 'Rafaela Brião Moreno', 'rafaelabriao@live.com', '12345'),
-(14, 'Felipe Pestana Figueiredo', 'felipefigueiredo.2015@outlook.com', '12345'),
-(16, 'Alessandro', 'fraguros2222@elencardo.com', '123');
+(36, 'Felipe Figueiredo', 'email@email.com', '123');
 
 --
 -- Índices para tabelas despejadas
 --
 
 --
--- Índices para tabela `usuario`
+-- Índices para tabela `user`
 --
-ALTER TABLE `usuario`
+ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `validar` (`email`);
 
@@ -61,10 +58,10 @@ ALTER TABLE `usuario`
 --
 
 --
--- AUTO_INCREMENT de tabela `usuario`
+-- AUTO_INCREMENT de tabela `user`
 --
-ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
