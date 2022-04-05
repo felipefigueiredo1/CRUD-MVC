@@ -8,7 +8,6 @@ class ControllerLogin
 {
     public function processRequest()
     {   
-
         //Inserção de usuário
         if (isset($_POST['insert']) && !empty($_POST['insert'])) {
             $sign = new ClassSign();
@@ -30,10 +29,8 @@ class ControllerLogin
         //Listando usuários registrados
         $listagem = ClassSign::listing();
 
-
         require __DIR__ . '/../../view/header.php';
         require __DIR__ . '/../../view/index.php';
-        require __DIR__ . '/../../view/ajax.php';
         require __DIR__ . '/../../view/footer.php';
     }
 }

@@ -5,14 +5,16 @@ namespace crud\model;
 use crud\model\ClassConnection;
 use PDO;
 
-class ClassSign
+class ClassSign extends ClassValidation
 {   
-    private $id;
-    private $name;
-    private $email;
-    private $password;
+    protected $id;
+    protected $name;
+    protected $email;
+    protected $password;
 
-    //Pegando valores enviados via POST
+    /**
+     * Pegando valores enviados via POST
+     */
     public function __construct()
     {
         $this->id          = empty($_POST['id'])       ? null : $_POST['id'];
@@ -21,37 +23,10 @@ class ClassSign
         $this->password    = empty($_POST['password']) ? null : $_POST['password'];
     }
     
-    //Pegando as variaveis de cadastro para limpeza
-    private function cleanData()
-    {
-        $this->id          = $this->cleanVar($this->id);
-        $this->name        = $this->cleanVar($this->name);
-        $this->password    = $this->cleanVar($this->password);
-    }
-    
-    //Limpando as variaveis de cadastro
-    private function cleanVar($values)
-    {
-        $values           = filter_var($values, FILTER_SANITIZE_STRING);
-        $character        = array("<", ">", "@", ";", "[", "]", "(", ")", "{", "}", "/", "\\", "--", "`", "´");
-        $values           = str_replace($character, "", $values);
-        return trim($values);
-    }
-
-    //Pegando e-mail para verificação
-    private function verifyEmail()
-    {
-        return $this->verifyEmailVar($this->email);
-    }
-
-    //Verificando se o e-mail é válido
-    private function verifyEmailVar($value)
-    {
-        $value = filter_var($value, FILTER_VALIDATE_EMAIL);
-        return $value; 
-    }
-
-    //Listando usuários registrados
+    /**
+     * Listando usuários registrados
+     * @return array $lista
+     */
     public static function listing()
     {
         $query = "SELECT * FROM user ORDER BY id ASC";
@@ -59,11 +34,13 @@ class ClassSign
         $dados = $conn->prepare($query);
         $dados->execute();
         $lista = $dados->fetchAll(PDO::FETCH_ASSOC);
-        return $lista;
-        
+        return $lista;   
     }
 
-    //Inserção de usuários
+    /**
+     * Inserção de usuários
+     * @return string
+     */
     public function inserting()
     {
         //Inicia função de validação de email
@@ -92,25 +69,40 @@ class ClassSign
         }
     }
 
-    //Atualização de registros de usuário
+    /**
+     * Atualização de registros de usuário
+     * @return string
+     */
     public function updating()
     {   
-        $query = "UPDATE usuario SET name=:name, password=:password, email=:email WHERE id=:id";
-        $conn = ClassConnection::getConnection();
-        $dados = $conn->prepare($query);
-        $dados->bindValue(":name",  $this->name);
-        $dados->bindValue(":password", $this->password);
-        $dados->bindValue(":email", $this->email);
-        $dados->bindValue(":id",    $this->id);
-        $dados->execute();
-        if($dados) {
-            echo '<script>alert("Editado com sucesso!")</script>';
+        //Inicia função de validação de email
+        if($this->verifyEmail() == true) {
+
+            //Inicia função de limpeza de variaveis
+            $this->cleanData();
+            
+            $query = "UPDATE user SET name=:name, password=:password, email=:email WHERE id=:id";
+            $conn = ClassConnection::getConnection();
+            $dados = $conn->prepare($query);
+            $dados->bindValue(":name",  $this->name);
+            $dados->bindValue(":password", $this->password);
+            $dados->bindValue(":email", $this->email);
+            $dados->bindValue(":id",    $this->id);
+            $dados->execute();
+            if($dados) {
+                echo '<script>alert("Editado com sucesso!")</script>';
+            } else {
+                echo '<script>alert("ERRO não é possivel editar!")</script>';
+            }
         } else {
-            echo '<script>alert("ERRO não é possivel editar!")</script>';
-        }
+            echo '<script>alert("E-mail inválido")</script>';
+        }    
     }
 
-    //Deleção de usuário
+    /**
+     * Deleção de usuário
+     * @return string
+     */
     public function deleting()
     {
         $query = "DELETE FROM user WHERE id = :id";
@@ -119,7 +111,8 @@ class ClassSign
         $dados->bindValue(":id", $this->id);
         $dados->execute();
         if($dados) {
-            echo '<script>alert("Deletado com sucesso!")</script>';
+            //echo '<script>alert("Deletado com sucesso!")</script>';
+            ClassSign::listing();
         } else {
             echo '<script>alert("ERRO não é possivel deletar!")</script>';
         }

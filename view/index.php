@@ -46,28 +46,28 @@
                         foreach ($listagem as $chave => $valor){
                     ?>
                     
-                    <tr>
-                        <form action="login" method="post">
+                        <tr>
+                            <form action="login" method="post">
 
-                            <td scope="row"><?php echo $valor['id']; ?></td>
-                            <td><input type ="text" name="name"  value="<?php echo $valor['name'];  ?>"></td>
-                            <td><input type ="email" name="email" value="<?php echo $valor['email']; ?>"></td>
-                            <td><input type ="password" name="password" value="<?php echo $valor['password']; ?>"></td>
-                            <td>
-                            <input type="hidden" name="id" value="<?php echo $valor['id']; ?>">
-                            <input type="submit" class="btn btn-success" name="update" value="Editar">
-                            </td>
-                        
-                        </form>
-                        <form action="login" method="post">
+                                <td scope="row"><?php echo $valor['id']; ?></td>
+                                <td><input type ="text" name="name"  value="<?php echo $valor['name'];  ?>"></td>
+                                <td><input type ="email" name="email" value="<?php echo $valor['email']; ?>"></td>
+                                <td><input type ="password" name="password" value="<?php echo $valor['password']; ?>"></td>
+                                <td>
+                                <input type="hidden" name="id" value="<?php echo $valor['id']; ?>">
+                                <input type="submit" class="btn btn-success" name="update" value="Editar">
+                                </td>
                             
-                            <td>
-                            <input type="hidden" name="id" value="<?php echo $valor['id']; ?>"> 
-                            <input type="submit" class="btn btn-danger" name="delete" value="Excluir">
-                            </td>
-                            
-                        </form>
-                    </tr>
+                            </form>
+                            <form action="login" method="post">
+                                
+                                <td>
+                                <input type="hidden" name="id" value="<?php echo $valor['id']; ?>"> 
+                                <input type="submit" class="btn btn-danger" name="delete" value="Excluir">
+                                </td>
+                                
+                            </form>
+                        </tr>
 
                     <?php } ?>
 
